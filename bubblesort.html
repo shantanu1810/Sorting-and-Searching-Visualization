@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort</title>
+    <script src="bubble_sort.js">
+    </script>
+    <style>
+        html,body{
+            height:100%;
+        }
+        html{
+            display: table;
+            margin:auto;
+            padding-top: 20px;
+        }
+        body{
+            display:table-cell;
+            vertical-align: center;
+            background: linear-gradient(rgb(160, 228, 213),rgb(80, 239, 239));
+        }
+        .node{
+            background-color:rgb(57, 54, 122);
+            box-shadow: 1px 1px 1px grey;
+            color:white;
+            width:30px;
+            float:left;
+            position:absolute;
+            text-align: center;
+        }
+        input{
+            border:none;
+            width: 55%;
+            height: 30px;
+            border-radius: 5px;
+            background: rgb(160, 228, 213);
+            border: 1px solid blue;
+        }
+        .explanation{
+            color: rgb(22, 8, 8);
+            font-size: 18px;
+            padding:30px;
+            height:100px;
+            background: #4175e4;
+            overflow-y:scroll;
+            color:rgb(255, 255, 255);
+            border-radius: 5px;
+        }
+        h4{
+            text-align: center;
+        }
+        .line{
+            width:30px;
+            rotate: 30deg;
+            float:left;
+            position:absolute;
+        }
+        .variable{
+            float:left;
+            position:absolute;
+            text-align: center;
+        }
+        .maindiv{
+            width:80%;
+            padding-left: 10%;
+        }
+        .button{
+            position:absolute;
+            left:45%;
+            top:85%;
+        }
+        .present{
+            width:100%;
+            height:200px;
+            background: rgb(224, 250, 151);
+            border-radius: 10px;
+            position: relative;
+            border:2px solid blue;
+        }
+        button{
+            height:30px;
+            border-radius: 5px;
+            background: #54f734;
+            box-shadow: 2px 1px 1px rgb(87, 87, 117);
+        }
+        button:active{
+            transform: scale(0.98);
+        }
+        .back{
+            position: absolute;
+            top:20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="main.html"><button class="back">back</button></a>
+    <div class="maindiv">
+    <h2 style="text-align: center;text-decoration:underline;">BUBBLE SORT VISUALIZATION</h2>
+    <span style="margin-left:5%;font-size: 18px;">Enter the data : </span> <input type="text" placeholder="Enter here"name="data"/>
+    <button onclick="start()">Input</button><br><br>
+    <div class="explanation">In selection sort, we first select the largest or smallest element int the array the put it in the first(0th index) or in the last index. Then we again find the smallest or largest element from the rest array(till the position we sort the array).
+    </div>
+    <br>
+    <div class="present">
+    </div>
+    </div>
+</body>
+</html>
