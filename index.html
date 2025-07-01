@@ -3,50 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizations</title>
-    <style>
-        .header{
-            text-align: center;
-            font-weight: bold;
-            background: #52f7f7;
-            padding:1px;
-            border-radius: 10px;
-        }
-        .direct{
-            width:100%;
-            height:40px;
-            font-size: 18px;
-            text-align: left;
-            border: none;
-            font-weight: bold;
-            background: white;
-        }
-        .direct:hover{
-            color:blue;
-            text-decoration: underline;
-        }
-    </style>
+    <title>Visualization</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Visualize the Data Structure and Algorithm</h1>
+    <h1>Visualize the Data Structure and Algorithm</h1>
+    <div class="options">
+    <p class="clickable-text" id="t1" >Serarching Techniques </p>
+    <p class="clickable-text"  id="t2" >Sorting  Techniques </p>
     </div>
-    <div class="coordinations">
-        <span style="font-weight: bold;font-size: 20px;">Searching Techniques</span>
-        <ul>
-            <li><a href="linear_Search.html"><button class="direct">Linear Search</button></a></li>
-            <li><a href="binarysearch.html"><button class="direct">Binary Search</button></a></li>
-        </ul>
-        <span style="font-weight: bold;font-size: 20px;">Sorting Techniques</span>
-        <ul>
-            <li>
-                <a href="selectionsort.html"><button class="direct">Selection Sort</button></a>
-            </li><li>
-                <a href="bubblesort.html"><button class="direct">Bubble sort</button></a>
-            </li><li>
-                <a href="insertionsort.html"><button class="direct">Insertion Sort</button></a>
-            </li>
-        </ul>
+    <div class="outputportion">
     </div>
+        <div class="out1"> 
+            <div id="text1">
+                <h3>Searching Techniques</h3>
+                <ul>
+                <li class="border search-item" data-index="0">Binary search</li>
+                <li class="border search-item" data-index="1">Linear search</li>
+                </ul>
+            </div>
+         </div>
+        <div class="out2">
+            <div id="text2">
+                <h3>Sorting Techniques</h3>
+                <ul>
+                <li class="border sort-item" data-index="0">Bubble sort</li>
+                <li class="border sort-item" data-index="1">Selection Sorting</li>
+                <li class="border sort-item" data-index="2">Insertion sort</li>
+                </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
