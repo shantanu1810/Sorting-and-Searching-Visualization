@@ -39,10 +39,9 @@
         }
         .explanation{
             color: rgb(22, 8, 8);
-            font-size: 18px;
             padding:30px;
             height:100px;
-            background: #118a06;
+            background: #4db344;
             overflow-y:scroll;
             color:rgb(255, 255, 255);
             border-radius: 5px;
@@ -93,18 +92,42 @@
             position: absolute;
             top:20px;
         }
+        #instruction{
+            font-weight: bold;
+            font-size: medium;
+            color: rgb(150, 6, 6);
+        }
+        .steps{
+            height:auto;
+            padding:20px;
+            background: rgb(122, 233, 122);
+            border: 2px solid rgb(5, 74, 5);
+            border-radius: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <a href="index.html"><button class="back" style="background: #143ceb;color:white;">Back</button></a>
+    <a href="index.html"><button class="back" style="background: #11ef05;">back</button></a>
     <div class="maindiv">
     <h2 style="text-align: center;text-decoration:underline;">INSERTION SORT VISUALIZATION</h2>
-    <span style="margin-left:5%;font-size: 20px;font-weight: bold;">Enter the data : </span> <input type="text" placeholder="Enter here"name="data"/>
-    <button onclick="start()">Input</button><br><br>
-    <div class="explanation">In Insertion sort, we shift the largest or smallest element in the array until it sorted position. Then we again do all the steps untill whole array is sorted(till the position we sort the array).
+    <div id="instruction"><span style="text-decoration: underline;font-size: 18px;">Instructions</span><ul><Li>Please enter around 10 input size data or less, otherwise it takes times to sort </Li><li>Please enter the data using Single Space(" ") or using a Single Comma(",").</li><li>In target element section please enter only one element(Number only).</li></ul></div></br>
+    <div class="explanation">Insertion sort is a comparison based sorting technique that build a final sorted array or list one item at a time. <br><br>
+        It is efficient for small datasets and it is consider an adaptive sorting technique.
+        <br><br>
+        <span style="color:rgb(147, 8, 8);font-weight: bold;">Time complexity of Insertion sort :<br>Best Case - O(N)<br>Average case - O(N<sup>2</sup>)<br>Worst case - O(N<sup>2</sup>)<br><br>
+        Space complexity : O(1) </span> <br> Where, N is the size of the array.
     </div>
     <br>
+    <span style="margin-left:5%;font-weight: bold;">Enter the data : </span> <input type="text" placeholder="Enter here"name="data"/><br><br>
+    <button onclick="start()" style="margin-left: 40%;width: 80px;">Input</button><br><br>
+    
+    <br>
     <div class="present">
+    </div>
+    <br>
+    <p style="text-align: center; font-weight: bold; font-size: 18px;">Array after each Iteration</p>
+    <div class="steps">
     </div>
     </div>
 </body>
