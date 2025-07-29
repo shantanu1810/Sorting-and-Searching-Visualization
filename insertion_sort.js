@@ -11,7 +11,7 @@ function start(){
     const d=document.getElementsByName("data");
     let text="<div class='button'><button onclick='sorting()'>Start Sorting</button></div>",s="";
     for(var x of d[0].value+" "){
-        if(x==" "){
+        if((x==" "||x==",")&&s!=""){
             text+="<div class='node'>"+s+"</div>";
             value[i]=parseInt(s);
             value2[i]=i;
@@ -44,38 +44,56 @@ function start(){
 async function sorting(){
     const vara=document.getElementsByClassName("variable");
     const vc=document.getElementsByClassName("node");
+    text="";
     for(let k=1;k<i;k++){
         let key = value[k];
         let id=value2[k];
         let j=k-1;
         vc[value2[k]].style.backgroundColor="rgb(5, 228, 242)";
         up_down(value2[k],-1,0);
-        await resolved(2500);
+        await resolved(1500);
         while(j>=0&&value[j]>key){
             value[j+1]=value[j];
             value2[j+1]=value2[j];
             sidewise(value2[j],-1,0,1);
-            await resolved(2500);
+            await resolved(1500);
             j-=1;
             move_j(1,vara,1);
-            await resolved(2500);
+            await resolved(1500);
         }
         move_j(1,vara,-1);
-        await resolved(2500);
+        await resolved(1500);
         value[j+1]=key;
         value2[j+1]=id;
         if(k-(j+1)!=0){
         sidewise(value2[j+1],1,0,(k-(j+1)));
-        await resolved(2800);
+        await resolved(1500);
         }
         up_down(value2[j+1],1,0);
-        await resolved(2500);
+        await resolved(1500);
         vc[value2[j+1]].style.backgroundColor="rgb(57, 54, 122)";
         move_i(vara);
         move_j(0,vara,1);
-        await resolved(2500);
+        await resolved(1500);
         prej+=32;
+        text+="The Array after "+k+" iteration : <br>";
+        for(let ste=0;ste<i;ste++){
+            if(ste!=i-1)
+            text+=value[ste]+", ";
+            else
+            text+=value[ste];
+        }
+        text+="<br><br>";
     }
+    text+="Sorted Array : <br>";
+    for(let ste=0;ste<i;ste++){
+        if(ste!=i-1)
+        text+=value[ste]+", ";
+        else
+        text+=value[ste];
+    }
+    const steps=document.getElementsByClassName('steps')[0];
+    steps.innerHTML=text;
 }
 function move_j(a,c,lr){
     if(a==1){  
@@ -87,10 +105,10 @@ function move_j(a,c,lr){
                 clearInterval(clkt);
                 return;
             }
-            c[1].style.left=(jl-d)+"px";
-            al=al+1;
-            jl=jl-d;
-            },1
+            c[1].style.left=(jl-d-d)+"px";
+            al=al+2;
+            jl=jl-d-d;
+            },0.2
         )
     }else{
         let d=prej-jl;
@@ -101,10 +119,10 @@ function move_j(a,c,lr){
                 clearInterval(clkt);
                 return;
             }
-            c[1].style.left=(jl+d)+"px";
-            al=al+1;
-            jl=jl+d;
-            },1
+            c[1].style.left=(jl+d+d)+"px";
+            al=al+2;
+            jl=jl+d+d;
+            },0.2
         )
     }
 }
@@ -115,11 +133,10 @@ function move_i(c){
             clearInterval(clk);
             return;
         }
-        c[0].style.left=(il+0.31)+"px";
-        al=al+1;
-        il=il+0.31;
-        },1
-    )
+        c[0].style.left=(il+0.62)+"px";
+        al=al+2;
+        il=il+0.62;
+        },0.42    )
 }
 function up_down(j,ud,vari){
     let al=0;
@@ -130,10 +147,10 @@ function up_down(j,ud,vari){
             clearInterval(clkj[vari]);
             return;
         }
-        c[j].style.top=(t[j]-ud)+"px";
-        al=al+1;
-        t[j]=t[j]-ud;
-        },0.5
+        c[j].style.top=(t[j]-ud-ud)+"px";
+        al=al+2;
+        t[j]=t[j]-ud-ud;
+        },0.1
     )
 }
 function sidewise(j,ud,vari,d){
@@ -146,10 +163,10 @@ function sidewise(j,ud,vari,d){
             clearInterval(clkj[vari]);
             return;
         }
-        c[j].style.left=(l[j]-ud)+"px";
-        al=al+1;
-        l[j]=l[j]-ud;
-        },2
+        c[j].style.left=(l[j]-ud-ud)+"px";
+        al=al+2;
+        l[j]=l[j]-ud-ud;
+        },0.5
     )
 }
 function resolved(s){
