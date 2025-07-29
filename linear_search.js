@@ -12,7 +12,7 @@ function start(){
     let st="";
     if(target!=""&&d[0].value!=""){
     for(var x of d[0].value+" "){
-        if(x==" "){
+        if((x==" " || x=="," )&& st!=""){
             text+="<div class='node'>"+st+"</div>";
             value[i]=parseInt(st);
             st="";
