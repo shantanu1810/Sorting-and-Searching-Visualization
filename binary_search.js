@@ -12,7 +12,7 @@ function start(){
     let st="";
     if(target!=""&&d[0].value!=""){
     for(var x of d[0].value+" "){
-        if(x==" "){
+        if((x==" " || x==",")){
             text+="<div class='node'>"+st+"</div>";
             value[i]=parseInt(st);
             st="";
@@ -45,6 +45,8 @@ async function searching(){
     c[0].style.color="blue";
     let pos=-1;
     const s=document.getElementsByClassName("node");
+    text="<ol>";
+    let iter=1;
     while(l<=u){
         let m=Math.floor((u+l)/2);
         move_j(c,m-prev);
@@ -53,26 +55,36 @@ async function searching(){
         if(value[m]==target){
             s[m].style.backgroundColor="rgb(12,119,186)";
             pos=m;
+            if(iter==1){
+                text+="<li>In first search we directly get the target element.</li>";
+            }else{
+                text+="<li>We found the element after "+iter+" search operations.</li>";
+            }
             break;
         }else if(value[m]>target){
             for(let k=m;k<=u;k++){
                 s[k].style.backgroundColor="rgba(57, 54, 122,0.5)";
             } 
             u=m-1;
+            text+="<li>We check in position "+(m+1)+" the element is not there and the target("+target+") is less then the value in "+(m+1)+" positon.</li>"
         }else{
             for(let k=l;k<=m;k++){
                 s[k].style.backgroundColor="rgba(57, 54, 122,0.5)";
             }
             l=m+1;
+            text+="<li>We check in position "+(m+1)+" the element is not there and the target("+target+") is greater then the value in "+(m+1)+" positon.</li>"
         }
         prev=m;
+        iter+=1;
     }
     if(pos==-1){
+        text+="<li>After "+iter+" operation we could not found the element.</li></ol><br>";
         const d=document.getElementsByClassName("result");
-        d[0].innerHTML="Target element<spam style='color:red;'> "+target+" is not present</spam> in the array";
+        d[0].innerHTML=text+"Target element<spam style='color:red;'> "+target+" is not present</spam> in the array";
     }else{
+        text+="<li>After "+iter+" operation we found the element.</li></ol><br>";
         const d=document.getElementsByClassName("result");
-        d[0].innerHTML="Target element<spam style='color:green;'> "+target+" is present</spam> in the array <spam style='color:green;'> in position : "+(pos+1)+"<span>";
+        d[0].innerHTML=text+"Target element<spam style='color:green;'> "+target+" is present</spam> in the array <spam style='color:green;'> in position : "+(pos+1)+"<span>";
     }
 }
 function move_j(c,m){ 
