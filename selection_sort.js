@@ -11,7 +11,7 @@ function start(){
     const d=document.getElementsByName("data");
     let text="<div class='button'><button onclick='sorting()'>Start Sorting</button></div>",s="";
     for(var x of d[0].value+" "){
-        if(x==" "){
+        if((x==" "||x==",")&&s!=""){
             text+="<div class='node'>"+s+"</div>";
             value[i]=parseInt(s);
             value2[i]=i;
@@ -47,13 +47,14 @@ function start(){
 async function sorting(){
     const vara=document.getElementsByClassName("variable");
     const cn=document.getElementsByClassName("node");
+    text="";
     for(let k=0;k<i-1;k++){
         let min=k;
         if(k!=0){
             move_min(0,vara,0);
             move_j(0,vara);
             move_i(vara);
-            await resolved(2300);
+            await resolved(2000);
         }
         cn[value2[min]].style.backgroundColor="rgb(185, 167, 40)";
         for(let j=k;j<i;j++){
@@ -61,26 +62,26 @@ async function sorting(){
             if(value[j]<value[min]){
                 cn[value2[min]].style.backgroundColor="rgb(57, 54, 122)";
                 move_min(1,vara,j-min);
-                await resolved(1700);
+                await resolved(1500);
                 min=j;
                 cn[value2[min]].style.backgroundColor="rgb(185, 167, 40)";
             }
             if(j!=i-1){
             move_j(1,vara);
-            await resolved(2200);
+            await resolved(2000);
             }
         }
         prej+=40;
         if(min!=k){
             up_down(value2[min],1,0);
             up_down(value2[k],-1,1);
-            await resolved(1800);
+            await resolved(1600);
             sidewise(value2[min],1,0,min-k);
             sidewise(value2[k],-1,1,min-k);
-            await resolved(1800);
+            await resolved(1600);
             up_down(value2[k],1,0);
             up_down(value2[min],-1,1);
-            await resolved(1800);
+            await resolved(1600);
             cn[value2[min]].style.backgroundColor="rgb(57, 54, 122)";
             let t=value[k];
             value[k]=value[min];
@@ -90,7 +91,24 @@ async function sorting(){
             value2[min]=t;
         }else
         cn[value2[min]].style.backgroundColor="rgb(57, 54, 122)";
+        text+="The Array after "+(k+1)+" iteration : <br>";
+        for(let ste=0;ste<i;ste++){
+            if(ste!=i-1)
+            text+=value[ste]+", ";
+            else
+            text+=value[ste];
+        }
+        text+="<br><br>";
     }
+    text+="Sorted Array : <br>";
+    for(let ste=0;ste<i;ste++){
+        if(ste!=i-1)
+        text+=value[ste]+", ";
+        else
+        text+=value[ste];
+    }
+    const steps=document.getElementsByClassName('steps')[0];
+    steps.innerHTML=text;
 }
 function move_j(a,c){
     if(a==1){  
@@ -103,7 +121,7 @@ function move_j(a,c){
             c[0].style.left=(jl+0.4)+"px";
             al=al+1;
             jl=jl+0.4;
-            },1
+            },0.6
         )
     }else{
         let d=jl-prej;
@@ -117,7 +135,7 @@ function move_j(a,c){
             c[0].style.left=(jl-d)+"px";
             al=al+1;
             jl=jl-d;
-            },1
+            },0.6
         )
     }
 }
@@ -132,7 +150,7 @@ function move_i(c){
         c[2].style.left=(il+0.4)+"px";
         al=al+1;
         il=il+0.4;
-        },1
+        },0.6
     )
 }
 function move_min(a,c,d){
@@ -148,7 +166,7 @@ function move_min(a,c,d){
             c[1].style.left=(minl+d)+"px";
             al=al+1;
             minl=minl+d;
-            },1
+            },0.6
         )
     }else{
         let d=minl-prej;
@@ -162,7 +180,7 @@ function move_min(a,c,d){
             c[1].style.left=(minl-d)+"px";
             al=al+1;
             minl=minl-d;
-            },1
+            },0.6
         )
     }
 }
@@ -178,7 +196,7 @@ function up_down(j,ud,vari){
         c[j].style.top=(t[j]-ud)+"px";
         al=al+1;
         t[j]=t[j]-ud;
-        },0.5
+        },0.3
     )
 }
 function sidewise(j,ud,vari,d){
@@ -194,7 +212,7 @@ function sidewise(j,ud,vari,d){
         c[j].style.left=(l[j]-ud)+"px";
         al=al+1;
         l[j]=l[j]-ud;
-        },2
+        },1
     )
 }
 function resolved(s){
