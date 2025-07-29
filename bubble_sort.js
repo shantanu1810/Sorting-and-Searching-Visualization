@@ -11,7 +11,7 @@ function start(){
     const d=document.getElementsByName("data");
     let text="<div class='button'><button onclick='sorting()'>Start Sorting</button></div>",s="";
     for(var x of d[0].value+" "){
-        if(x==" "){
+        if((x==" "||x==",")&&s!=""){
             text+="<div class='node'>"+s+"</div>";
             value[i]=parseInt(s);
             value2[i]=i;
@@ -53,6 +53,7 @@ function start(){
 async function sorting(){
     const vara=document.getElementsByClassName("variable");
     const vc=document.getElementsByClassName("node");
+    text="";
     for(let k=0;k<i-1;k++){
         let j;
         for(j=0;j<i-k-1;j++){
@@ -60,13 +61,13 @@ async function sorting(){
             if(value[j+1]<value[j]){
                 //up_down(value2[j],1,0);
                 up_down(value2[j+1],1,1);
-                await resolved(1500);
+                await resolved(1200);
                 sidewise(value2[j],-1,0,1);
                 sidewise(value2[j+1],1,1,1);
-                await resolved(2200);
+                await resolved(2000);
                 up_down(value2[j+1],-1,0);
                 //up_down(value2[j],-1,1);
-                await resolved(1500);
+                await resolved(1200);
                 let t=value[j+1];
                 value[j+1]=value[j];
                 value[j]=t;
@@ -77,16 +78,33 @@ async function sorting(){
             vc[value2[j]].style.backgroundColor="rgb(57, 54, 122)";
             if(j+1!=i-1-k){
             move_j(1,vara);
-            await resolved(2200);
+            await resolved(2000);
             }
         }
+        text+="The Array after "+(k+1)+" iteration : <br>";
+        for(let ste=0;ste<i;ste++){
+            if(ste!=i-1)
+            text+=value[ste]+", ";
+            else
+            text+=value[ste];
+        }
+        text+="<br><br>";
         vc[value2[j]].style.backgroundColor="rgb(57, 54, 122)";
         move_j(0,vara);
         move_i(vara);
-        await resolved(1800);
+        await resolved(1500);
     }
     move_i(vara);
-        await resolved(1800);
+    await resolved(1800);
+    text+="Sorted Array : <br>";
+    for(let ste=0;ste<i;ste++){
+        if(ste!=i-1)
+        text+=value[ste]+", ";
+        else
+        text+=value[ste];
+    }
+    const steps=document.getElementsByClassName('steps')[0];
+    steps.innerHTML=text;
 }
 function move_j(a,c){
     if(a==1){  
@@ -102,7 +120,7 @@ function move_j(a,c){
             al=al+1;
             jl=jl+d;
             j1l=j1l+d;
-            },1
+            },0.6
         )
     }else{
         let d=jl-prej;
@@ -118,7 +136,7 @@ function move_j(a,c){
             al=al+1;
             jl=jl-d;
             j1l=j1l-d;
-            },1
+            },0.6
         )
     }
 }
@@ -132,7 +150,7 @@ function move_i(c){
         c[2].style.left=(il-0.31)+"px";
         al=al+1;
         il=il-0.31;
-        },1
+        },0.6
     )
 }
 function up_down(j,ud,vari){
@@ -147,7 +165,7 @@ function up_down(j,ud,vari){
         c[j].style.top=(t[j]-ud)+"px";
         al=al+1;
         t[j]=t[j]-ud;
-        },0.5
+        },0.3
     )
 }
 function sidewise(j,ud,vari,d){
@@ -163,7 +181,7 @@ function sidewise(j,ud,vari,d){
         c[j].style.left=(l[j]-ud)+"px";
         al=al+1;
         l[j]=l[j]-ud;
-        },2
+        },1
     )
 }
 function resolved(s){
