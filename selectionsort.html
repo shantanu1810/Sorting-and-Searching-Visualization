@@ -38,11 +38,10 @@
             border: 1px solid blue;
         }
         .explanation{
-            color: rgb(22, 8, 8);
-            font-size: 18px;
+            font-size: medium ;
             padding:30px;
-            height:100px;
-            background: #4175e4;
+            height:150px;
+            background: #618ff1;
             overflow-y:scroll;
             color:white;
             border-radius: 5px;
@@ -92,18 +91,41 @@
             position: absolute;
             top:20px;
         }
+        #instruction{
+            font-weight: bold;
+            font-size: medium;
+            color: rgb(150, 6, 6);
+        }
+        .steps{
+            height:auto;
+            padding:20px;
+            background: rgb(122, 233, 122);
+            border: 2px solid rgb(5, 74, 5);
+            border-radius: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <a href="index.html"><button class="back">back</button></a>
     <div class="maindiv">
     <h2 style="text-align: center;text-decoration: underline;">SELECTION SORT VISULATION</h2>
-    <span style="margin-left:5%;font-size: 18px;">Enter the data : </span> <input type="text" placeholder="Enter here"name="data"/>
-    <button onclick="start()">Input</button><br><br>
-    <div class="explanation">In selection sort, we first select the largest or smallest element int the array the put it in the first(0th index) or in the last index. Then we again find the smallest or largest element from the rest array(till the position we sort the array).
-    </div>
+    <div id="instruction"><span style="text-decoration: underline;font-size: 18px;">Instructions</span><ul><Li>Please enter around 10 input size data or less, otherwise it takes times to sort </Li><li>Please enter the data using Single Space(" ") or using a Single Comma(",").</li><li>In target element section please enter only one element(Number only).</li></ul></div></br>
+    <div class="explanation">In selection sort, we first select the largest or smallest element in the array then put it in the first(0th index) or in the last index(according to ascending or descending order). Then we again find the smallest or largest element from the rest of the array(untill the  array is sorted).
+        <br><br>It is a comparison based sorting technique, it selects a smallest or largest element then swap it in its actual position.
+        <br><br><span style="color:rgb(147, 8, 8);font-weight: bold;">Time complexity of Selection sort : O(N<sup>2</sup>) <br>
+        Space complexity : O(1) </span> <br> Where, N is the size of the array.
+    </div> <br><br>
+    <span style="margin-left:5%;font-size: 18px;">Enter the data : </span> <input type="text" placeholder="Enter here"name="data"/><br><br>
+    <button onclick="start()" style="margin-left: 40%; width: 80px;">Input</button><br><br>
+    
     <br>
     <div class="present">
+
+    </div>
+    <br>
+    <p style="text-align: center; font-weight: bold; font-size: 18px;">Array after each Iteration</p>
+    <div class="steps">
 
     </div>
     </div>
