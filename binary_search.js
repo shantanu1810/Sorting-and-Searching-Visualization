@@ -78,7 +78,7 @@ async function searching(){
         iter+=1;
     }
     if(pos==-1){
-        text+="<li>After "+iter+" operation we could not found the element.</li></ol><br>";
+        text+="<li>After "+(iter-1)+" operation we could not found the element.</li></ol><br>";
         const d=document.getElementsByClassName("result");
         d[0].innerHTML=text+"Target element<spam style='color:red;'> "+target+" is not present</spam> in the array";
     }else{
